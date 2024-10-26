@@ -1,0 +1,22 @@
+name: Build debian package
+on: [push]
+jobs:
+  build-debs:
+    strategy:
+      matrix:
+        architecture: [amd64, armhf, arm64]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: link debian folder
+        run: ln -s contrib/packaging/debian .
+      - uses: jtdor/build-deb-action@v1
+        with:
+          buildpackage-opts: --build=binary --no-sign
+          artifacts-dir: artifacts
+          host-arch: ${{ matrix.architecture }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mympd-deb-${{ matrix.architecture }}
+          path: artifacts
