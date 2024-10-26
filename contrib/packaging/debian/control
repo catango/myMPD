@@ -5,9 +5,10 @@ Maintainer: Juergen Mang <mail@jcgames.de>
 Build-Depends: cmake,
                debhelper-compat (= 13),
                jq,
+               lua5.4,
                libflac-dev,
                libid3tag0-dev,
-               liblua5.4-dev | liblua5.3-dev,
+               liblua5.4-dev,
                libpcre2-dev,
                libssl-dev
 Standards-Version: 4.1.2
